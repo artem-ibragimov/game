@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <meta charset="utf-8">
+      <style>
+         body {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-x: hidden;
+            background: #ddd;
+         }
+
+
+         div#container {
+            flex-direction: row;
+            display: flex;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            background: black;
+         }
+
+         canvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            box-sizing: border-box;
+         }
+      </style>
+      <script async="true" src="./app.min.js"></script>
+   </head>
+
+   <body>
+      <div id="controls" class='panel'>
+         <!-- <button id="saveControl" class='button'>Сохранить</button>
+
+         <label for="uploadControl" class='button'>Восстановить</label>
+         <input id="uploadControl" type="file" style="display:none;" accept="application/json" />
+
+         <label class='button' id="getterControlLabel" for="getterControl">Выбрать снимки</label>
+         <input id="getterControl" type="file" style="display:none;" multiple />
+
+         <label for="contrastControl">Контраст</label>
+         <input id="contrastControl" type="range" min="-50" max="50" value="0" step="5" />
+
+         <label for="coordsNumberingControl">Нумерация точек</label>
+         <input id="coordsNumberingControl" type='checkbox' />
+
+         <label for="pointSizeControl">Размер точки, px</label>
+         <input id="pointSizeControl" type="number" min="1" max="5" value="2" step="1" />
+
+         <label for="gridControl">Сетка</label>
+         <input id="gridControl" type='checkbox' />
+
+         <label id="gridStepControlLabel" for="gridStepControl" style='display:none;'>Шаг сетки, мм</label>
+         <input id="gridStepControl" type="number" min="1" max="15" value="10" step="1" style='display:none;' />
+
+         <button id="exportCoordsControl" class='button'>Экспорт точек</button>
+         <button id="createControl" class='button'>Построить</button> -->
+      </div>
+      <div id='container'>
+         <canvas id="canvas"> </canvas>
+      </div>
+   </body>
+
+</html>
