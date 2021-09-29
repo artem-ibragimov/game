@@ -1,34 +1,19 @@
-import { randomCoords } from 'canvas';
-import { BaseEntity, ICoords } from 'Entity/BaseEntity';
-import { BasePerson, People } from 'Entity/People';
-import { Places } from 'Entity/places';
+import { BaseEntity } from 'entity/BaseEntity';
+import { KnightAttacks } from 'entity/knight/Attack';
+import { KnightDeath } from 'entity/knight/Death';
+import { KnightRun } from 'entity/knight/Run';
 
 export class App {
-   placesCoords: ICoords[] = [];
-   places: BaseEntity[];
-   people: BasePerson[];
+   knight: BaseEntity;
 
    constructor(private canvas: HTMLCanvasElement) {
-      this.movePeople = this.movePeople.bind(this);
       this.render = this.render.bind(this);
       canvas.height = canvas.clientHeight;
       canvas.width = canvas.clientWidth;
-      const numberOfPlaces = Places.length;
+      this.knight = new KnightAttacks({ x: 0, y: 0 });
 
-      this.placesCoords = Array.from({ length: numberOfPlaces }).map(() => randomCoords(canvas.width, canvas.height));
-      this.places = Places.map((C, i) => new C(this.placesCoords[i]));
-      this.people = People.map((C, i) => new C(this.placesCoords[i]));
+      // setTimeout(() => { this.knight = new KnightDeath({ x: 0, y: 0 }); }, 3000);
       requestAnimationFrame(this.render);
-      this.movePeople();
-   }
-
-   private getRandomPlaceCoords(): ICoords {
-      return this.placesCoords[Math.round(Math.random() * this.placesCoords.length)];
-   }
-
-   private movePeople() {
-      this.people.forEach((p) => { p.move(this.getRandomPlaceCoords()); });
-      setTimeout(this.movePeople, (1 - Math.random()) * 2000);
    }
 
    private render() {
@@ -37,8 +22,7 @@ export class App {
       ctx.globalCompositeOperation = 'destination-over';
       ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
       const render = (p: BaseEntity) => { p.render(ctx); };
-      this.places.forEach(render);
-      this.people.forEach(render);
+      this.knight.render(ctx);
       requestAnimationFrame(this.render);
    }
 }
